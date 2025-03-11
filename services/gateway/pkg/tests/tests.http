@@ -1,0 +1,22 @@
+@host = localhost:8080
+
+// HTTP Tests
+### Register User
+POST {{host}}/api/register
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "Ivan",
+  "password": "Ivanov12345"
+}
+
+### Login User
+POST {{host}}/api/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "Ivan",
+  "password": "Ivanov12345"
+}
