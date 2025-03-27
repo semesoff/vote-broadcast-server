@@ -1,0 +1,3 @@
+GRPCServer:
+  port: 5001
+  network: tcp

@@ -1,0 +1,18 @@
+@host=localhost:5001
+@url=grpc://{{host}}/auth.AuthService
+
+### Register User
+GRPC {{url}}/RegisterUser
+
+{
+  "username": "user12341",
+  "password": "pass1234"
+}
+
+### Login User
+GRPC {{url}}/LoginUser
+
+{
+  "username": "user",
+  "password": "pass"
+}

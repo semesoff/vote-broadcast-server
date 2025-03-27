@@ -13,10 +13,6 @@ func main() {
 	// Initialize HandlerManager
 	var handlerManager handlers.Handlers = handlers.NewHandlersManager(cfg)
 
-	go func() {
-
-	}()
-
 	// Initialize ServerManager
 	var serverManager = server.NewServerManager(cfg, handlerManager)
 	serverManager.Start()

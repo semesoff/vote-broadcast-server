@@ -1,0 +1,35 @@
+@host=localhost:5002
+@url=grpc://{{host}}/poll.PollService
+
+### Get Polls Request
+GRPC {{url}}/GetPolls
+
+### Get Poll Data
+GRPC {{url}}/GetPoll
+
+{
+  "id": "13"
+}
+
+### Create Poll
+GRPC {{url}}/CreatePoll
+
+{
+  "title": "Сносим 10 общагу",
+  "options": [
+    {
+      "id": "0",
+      "text": "Да"
+    },
+    {
+      "id": "0",
+      "text": "Нет"
+    },
+    {
+      "id": "0",
+      "text": "Не знаю"
+    }
+  ],
+  "type": "single",
+  "user_id": "1"
+}

@@ -1,7 +1,7 @@
 package main
 
 import (
-	server2 "vote-broadcast-server/services/auth/pkg/server"
+	server2 "vote-broadcast-server/services/poll/pkg/server"
 )
 
 func main() {

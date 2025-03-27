@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"vote-broadcast-server/services/gateway/pkg/api/handlers"
+	"vote-broadcast-server/services/gateway/pkg/api/middleware"
 	"vote-broadcast-server/services/gateway/pkg/api/routes"
 	"vote-broadcast-server/services/gateway/pkg/config"
 )
@@ -19,12 +20,17 @@ func NewServerManager(c config.ConfigProvider, h handlers.Handlers) *ServerManag
 	return &ServerManager{
 		c:        c,
 		handlers: h,
-		mux:      gin.Default(),
+		mux:      gin.New(),
 	}
 }
 
 func (s *ServerManager) Start() {
 	cfg := s.c.GetConfig()
+
+	// Set Gin to release mode
+	gin.SetMode(gin.ReleaseMode)
+
+	s.mux.Use(middleware.LoggingMiddleware)
 
 	// Initialize Routes
 	routes.InitRoutes(s.mux, cfg.Services, s.handlers)

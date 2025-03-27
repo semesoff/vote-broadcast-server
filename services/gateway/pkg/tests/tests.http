@@ -7,8 +7,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "username": "Ivan",
-  "password": "Ivanov12345"
+  "username": "user1234",
+  "password": "pass1234"
 }
 
 ### Login User
@@ -17,6 +17,35 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "username": "Ivan",
-  "password": "Ivanov12345"
+  "username": "user",
+  "password": "pass"
+}
+
+### Get Polls
+GET {{host}}/api/polls
+Accept: application/json
+
+### Get Poll
+GET {{host}}/api/polls/13
+Accept: application/json
+
+### Create Poll
+POST {{host}}/api/polls
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "Poll Title",
+  "options": [
+    {
+      "id": 0,
+      "text": "Option 1"
+    },
+    {
+      "id": 0,
+      "text": "Option 2"
+    }
+  ],
+  "type": 1,
+  "user_id": 1
 }

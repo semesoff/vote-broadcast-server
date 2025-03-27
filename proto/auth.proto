@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package gateway;
+package auth;
 
-option go_package = "gateway/";
+option go_package = "auth/";
 
 // AuthService - service for user authentication
 service AuthService {
