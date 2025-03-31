@@ -51,7 +51,8 @@ func (d *DatabaseManager) CreatePoll(poll models.Poll, userId int) error {
 		return err
 	}
 
-	err = tx.QueryRow("INSERT INTO polls (title, creator_id, poll_type) VALUES ($1, $2, $3)  RETURNING id", poll.Title, userId, poll.Type.String()).Scan(&poll.ID)
+	err = tx.QueryRow("INSERT INTO polls (title, creator_id, poll_type, max_options) VALUES ($1, $2, $3, $4)  RETURNING id",
+		poll.Title, userId, poll.Type.String(), poll.MaxOptions).Scan(&poll.ID)
 	if err != nil {
 		if err := tx.Rollback(); err != nil {
 			return err

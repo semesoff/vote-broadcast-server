@@ -25,4 +25,12 @@ func InitRoutes(mux *gin.Engine, services map[string]models.ServiceConfig, handl
 	mux.Handle(pollService.Routes[0].Method, pollService.Routes[0].Path, handlers.GetPolls)
 	mux.Handle(pollService.Routes[1].Method, pollService.Routes[1].Path, handlers.CreatePoll)
 	mux.Handle(pollService.Routes[2].Method, pollService.Routes[2].Path, handlers.GetPoll)
+
+	voteService, ok := services["vote"]
+	if !ok {
+		log.Fatalln(errors.New("poll service not found"))
+		return
+	}
+	mux.Handle(voteService.Routes[0].Method, voteService.Routes[0].Path, handlers.CreateVote)
+	mux.Handle(voteService.Routes[1].Method, voteService.Routes[1].Path, handlers.GetVotes)
 }

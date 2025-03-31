@@ -24,7 +24,7 @@ services:
     routes:
       - path: /api/vote
         method: POST
-      - path: /api/vote/:id
+      - path: /api/votes/:id
         method: GET
 
   websocket:

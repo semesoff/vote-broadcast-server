@@ -29,10 +29,11 @@ const (
 )
 
 type Poll struct {
-	ID      int
-	Title   string
-	Type    PollType
-	Options []Option
+	ID         int
+	Title      string
+	Type       PollType
+	MaxOptions int
+	Options    []Option
 }
 
 type Option struct {

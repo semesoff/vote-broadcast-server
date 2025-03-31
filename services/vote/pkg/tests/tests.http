@@ -1,0 +1,20 @@
+@host=localhost:5003
+@url=grpc://{{host}}/vote.VoteService
+
+### Get Votes
+GRPC {{url}}/GetVotes
+
+{
+  "poll_id": "13"
+}
+
+### Create Poll
+GRPC {{url}}/CreateVote
+
+{
+  "poll_id": "13",
+  "user_id": "1",
+  "options_id": [
+    "10", "11", "12"
+  ]
+}

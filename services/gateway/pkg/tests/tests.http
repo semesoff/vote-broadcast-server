@@ -49,3 +49,19 @@ Accept: application/json
   "type": 1,
   "user_id": 1
 }
+
+### GetVotes
+GET {{host}}/api/votes/13
+
+### Create Vote
+POST {{host}}/api/vote
+Content-Type: application/json
+Accept: application/json
+
+{
+  "poll_id": 13,
+  "user_id": 1,
+  "options_id": [
+    10, 11, 12
+  ]
+}

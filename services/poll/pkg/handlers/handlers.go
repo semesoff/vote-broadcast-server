@@ -123,5 +123,7 @@ func getCreatePollData(req *pollProto.CreatePollRequest) (*models.Poll, int) {
 		})
 	}
 
+	pollData.MaxOptions = len(pollData.Options)
+
 	return &pollData, userId
 }

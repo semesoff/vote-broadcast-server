@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS polls
     creator_id  INTEGER      NOT NULL REFERENCES users (id) ON DELETE CASCADE,
     poll_type   VARCHAR(20)  NOT NULL,
     created_at  TIMESTAMP WITH TIME ZONE     DEFAULT CURRENT_TIMESTAMP,
-    max_options INTEGER      NOT NULL        DEFAULT 10 CHECK (max_options > 0),
+    max_options INTEGER      NOT NULL        DEFAULT 10 CHECK (max_options > 0 AND max_options < 10),
     CONSTRAINT valid_poll_type CHECK (poll_type IN ('single', 'multiple'))
 );
 

@@ -1,7 +1,7 @@
 @host=localhost:5002
 @url=grpc://{{host}}/poll.PollService
 
-### Get Polls Request
+### Get Polls
 GRPC {{url}}/GetPolls
 
 ### Get Poll Data

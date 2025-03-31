@@ -7,6 +7,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 	"vote-broadcast-server/proto/auth"
 	"vote-broadcast-server/proto/poll"
+	"vote-broadcast-server/proto/vote"
 	"vote-broadcast-server/services/gateway/pkg/config"
 	"vote-broadcast-server/services/gateway/pkg/models"
 )
@@ -21,6 +22,8 @@ type Handlers interface {
 	GetPolls(c *gin.Context)
 	GetPoll(c *gin.Context)
 	CreatePoll(c *gin.Context)
+	GetVotes(c *gin.Context)
+	CreateVote(c *gin.Context)
 }
 
 func NewHandlersManager(c config.ConfigProvider) *HandlersManager {
@@ -47,6 +50,8 @@ func (h *HandlersManager) getGRPCService(serviceName string) (interface{}, *grpc
 		clientInstance = auth.NewAuthServiceClient(conn)
 	case "poll":
 		clientInstance = poll.NewPollServiceClient(conn)
+	case "vote":
+		clientInstance = vote.NewVoteServiceClient(conn)
 	default:
 		return nil, nil, errors.New("service not found: " + serviceName)
 	}
