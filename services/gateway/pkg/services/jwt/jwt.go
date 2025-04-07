@@ -1,14 +1,16 @@
-package jwtModel
+package jwt
 
 import (
 	"errors"
 	"github.com/golang-jwt/jwt/v5"
-	"time"
-	"vote-broadcast-server/services/auth/pkg/models"
 )
 
 type JWTManager struct {
 	secretKey []byte
+}
+
+type JWTProvider interface {
+	VerifyToken(tokenString string) (*Claims, error)
 }
 
 type Claims struct {
@@ -21,25 +23,6 @@ func NewJWTManager(secretKey []byte) *JWTManager {
 	return &JWTManager{
 		secretKey: secretKey,
 	}
-}
-
-func (j *JWTManager) GenerateToken(user models.UserWithID) (string, error) {
-	claims := Claims{
-		UserID:   user.ID,
-		Username: user.Username,
-		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Minute * 30)),
-			IssuedAt:  jwt.NewNumericDate(time.Now()),
-		},
-	}
-
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	signedToken, err := token.SignedString(j.secretKey)
-	if err != nil {
-		return "", err
-	}
-
-	return signedToken, nil
 }
 
 func (j *JWTManager) VerifyToken(tokenString string) (*Claims, error) {

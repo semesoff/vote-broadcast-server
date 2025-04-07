@@ -1,0 +1,5 @@
+@host=localhost:5005
+@url=ws://{{host}}
+
+WEBSOCKET {{url}}/getPolls
+Content-Type: application/json

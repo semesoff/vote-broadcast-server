@@ -1,0 +1,18 @@
+@host=localhost:5004
+@url=grpc://{{host}}/websocket.WebSocketService
+
+### Send Polls
+GRPC {{url}}/GetPolls
+
+{
+  "polls": [
+    {
+      "id": 1,
+      "title": "govno"
+    },
+    {
+      "id": 2,
+      "title": "sdgf"
+    }
+  ]
+}

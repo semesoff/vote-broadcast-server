@@ -7,6 +7,7 @@ import (
 	"google.golang.org/grpc"
 	"net/http"
 	"strconv"
+	"strings"
 	"vote-broadcast-server/proto/poll"
 	"vote-broadcast-server/services/gateway/pkg/models"
 	"vote-broadcast-server/services/gateway/pkg/utils"
@@ -97,11 +98,41 @@ func (h *HandlersManager) GetPoll(c *gin.Context) {
 }
 
 func (h *HandlersManager) CreatePoll(c *gin.Context) {
-	var pollData models.Poll
+	var pollRequest models.PollRequest
 
-	if err := json.NewDecoder(c.Request.Body).Decode(&pollData); err != nil {
+	if err := json.NewDecoder(c.Request.Body).Decode(&pollRequest); err != nil {
 		utils.RespondWithError(c.Writer, http.StatusBadRequest, "Invalid request payload")
 		return
+	}
+
+	token := strings.Split(c.GetHeader("Authorization"), " ")[1]
+	if token == "" {
+		utils.RespondWithError(c.Writer, http.StatusBadRequest, "Authorization token is required")
+		return
+	}
+
+	dataFromToken, err := h.jwtProvider.VerifyToken(token)
+	if err != nil {
+		utils.RespondWithError(c.Writer, http.StatusUnauthorized, "Invalid token")
+		return
+	}
+
+	if err := validationTokenData(*dataFromToken); err != nil {
+		utils.RespondWithError(c.Writer, http.StatusUnauthorized, "Invalid token")
+		return
+	}
+
+	userIntId, err := strconv.Atoi(dataFromToken.UserID)
+	if err != nil {
+		utils.RespondWithError(c.Writer, http.StatusBadRequest, "userId must be an integer")
+		return
+	}
+
+	pollData := models.Poll{
+		Title:   pollRequest.Title,
+		Type:    pollRequest.Type,
+		Options: pollRequest.Options,
+		UserID:  userIntId,
 	}
 
 	request := &poll.CreatePollRequest{}

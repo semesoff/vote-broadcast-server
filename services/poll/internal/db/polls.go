@@ -2,6 +2,7 @@ package db
 
 import (
 	"vote-broadcast-server/services/poll/pkg/models"
+	"vote-broadcast-server/services/poll/pkg/utils"
 )
 
 func (d *DatabaseManager) GetPolls() ([]models.Poll, error) {
@@ -23,10 +24,16 @@ func (d *DatabaseManager) GetPolls() ([]models.Poll, error) {
 }
 
 func (d *DatabaseManager) GetPoll(poll models.Poll) (models.Poll, error) {
-	err := d.db.QueryRow("SELECT id, title FROM polls WHERE id = $1", poll.ID).Scan(&poll.ID, &poll.Title)
+	var pollType string
+	var maxOptions int
+	err := d.db.QueryRow("SELECT id, title, poll_type, max_options FROM polls WHERE id = $1",
+		poll.ID).Scan(&poll.ID, &poll.Title, &pollType, &maxOptions)
 	if err != nil {
 		return models.Poll{}, err
 	}
+
+	poll.Type = utils.StringToPollType(pollType)
+	poll.MaxOptions = maxOptions
 
 	rows, err := d.db.Query("SELECT id, option_text FROM poll_options WHERE poll_id = $1", poll.ID)
 	defer rows.Close()

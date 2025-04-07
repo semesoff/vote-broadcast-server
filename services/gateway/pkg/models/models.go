@@ -13,6 +13,9 @@ type ServiceConfig struct {
 }
 
 type Config struct {
-	Port     int                      `yaml:"port"`
-	Services map[string]ServiceConfig `yaml:"services"`
+	Port         int                      `yaml:"port"`
+	Services     map[string]ServiceConfig `yaml:"services"`
+	JWTSecretKey JWTSecretKey             // from .env
 }
+
+type JWTSecretKey []byte

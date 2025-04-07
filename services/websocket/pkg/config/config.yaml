@@ -1,0 +1,7 @@
+grpc_server:
+  port: 5004
+  network: tcp
+
+websocket_server:
+  port: 5005
+  network: tcp

@@ -41,3 +41,14 @@ func convertToProtoOptions(options []models.Option) []*pollProto.Option {
 	}
 	return protoOptions
 }
+
+func StringToPollType(pollType string) models.PollType {
+	switch pollType {
+	case "single":
+		return models.Single
+	case "multiple":
+		return models.Multiple
+	default:
+		return -1
+	}
+}

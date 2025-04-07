@@ -13,9 +13,9 @@ type HandlersManager struct {
 	auth auth2.Auth
 }
 
-func NewHandlersManager(service *services.ServiceManager) *HandlersManager {
+func NewHandlersManager(service *services.ServiceManager, JWTSecretKey []byte) *HandlersManager {
 	return &HandlersManager{
-		auth: auth2.NewAuthService(service),
+		auth: auth2.NewAuthService(service, JWTSecretKey),
 	}
 }
 

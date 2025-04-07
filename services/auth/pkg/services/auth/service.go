@@ -11,6 +11,7 @@ import (
 
 type AuthManager struct {
 	*services.ServiceManager
+	jwtSecretKey models.JWTSecretKey
 }
 
 type Auth interface {
@@ -18,9 +19,10 @@ type Auth interface {
 	LoginUser(user *models.User) (models.Token, error)
 }
 
-func NewAuthService(service *services.ServiceManager) *AuthManager {
+func NewAuthService(service *services.ServiceManager, jwtSecretKey models.JWTSecretKey) *AuthManager {
 	return &AuthManager{
 		service,
+		jwtSecretKey,
 	}
 }
 
@@ -43,7 +45,7 @@ func (s *AuthManager) RegisterUser(user *models.User) (models.Token, error) {
 		return models.Token{}, errors.New("error adding user")
 	}
 
-	jwtManager := jwt.NewJWTManager()
+	jwtManager := jwtModel.NewJWTManager(s.jwtSecretKey)
 	token, err := jwtManager.GenerateToken(userWithID)
 
 	if err != nil {
@@ -67,7 +69,7 @@ func (s *AuthManager) LoginUser(user *models.User) (models.Token, error) {
 		return models.Token{}, errors.New("invalid password")
 	}
 
-	jwtManager := jwt.NewJWTManager()
+	jwtManager := jwtModel.NewJWTManager(s.jwtSecretKey)
 	token, err := jwtManager.GenerateToken(
 		models.UserWithID{
 			ID:       userWithPassword.ID,

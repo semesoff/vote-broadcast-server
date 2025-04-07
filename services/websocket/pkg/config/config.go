@@ -1,19 +1,18 @@
 package config
 
 import (
-	"github.com/joho/godotenv"
 	"gopkg.in/yaml.v2"
 	"log"
 	"os"
-	"vote-broadcast-server/services/gateway/pkg/models"
+	"vote-broadcast-server/services/websocket/pkg/models"
 )
-
-type ConfigProvider interface {
-	GetConfig() *models.Config
-}
 
 type ConfigManager struct {
 	config *models.Config
+}
+
+type ConfigProvider interface {
+	GetConfig() *models.Config
 }
 
 func NewConfigManager() *ConfigManager {
@@ -29,24 +28,11 @@ func (cm *ConfigManager) Init() {
 		return
 	}
 
-	if err := godotenv.Load("../../.env"); err != nil {
-		log.Fatalln("Error loading .env file: ", err)
-		return
-	}
-
-	defer func(file *os.File) {
-		if err := file.Close(); err != nil {
-			log.Fatalln("Error closing config: ", err)
-		}
-	}(file)
-
 	decoder := yaml.NewDecoder(file)
 	if err := decoder.Decode(cm.config); err != nil {
 		log.Fatalln("Error decoding config: ", err)
 		return
 	}
-
-	cm.config.JWTSecretKey = []byte(os.Getenv("JWT_SECRET_KEY"))
 
 	log.Println("Config is initialized")
 }

@@ -24,8 +24,8 @@ func (s *ServerManager) Start() {
 	service := services.NewServiceManager(authConfig.GetConfig().Database)
 
 	// Initialize GRPCServer
-	s.server = server.NewServerManager(s.cfg.GetConfig().GRPCServer, service)
+	s.server = server.NewServerManager(s.cfg.GetConfig().GRPCServer, service, s.cfg.GetConfig().JWTSecretKey)
 
 	// Start GRPCServer
-	s.server.Start(service)
+	s.server.Start(service, s.cfg.GetConfig().JWTSecretKey)
 }

@@ -1,8 +1,9 @@
 package models
 
 type Config struct {
-	GRPCServer GRPCServer `yaml:"GRPCServer"`
-	Database   Database   `yaml:"database"`
+	GRPCServer   GRPCServer   `yaml:"GRPCServer"`
+	Database     Database     `yaml:"database"`
+	JWTSecretKey JWTSecretKey // form .env
 }
 
 type GRPCServer struct {

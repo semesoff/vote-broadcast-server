@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"errors"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -10,10 +11,12 @@ import (
 	"vote-broadcast-server/proto/vote"
 	"vote-broadcast-server/services/gateway/pkg/config"
 	"vote-broadcast-server/services/gateway/pkg/models"
+	jwtModel "vote-broadcast-server/services/gateway/pkg/services/jwt"
 )
 
 type HandlersManager struct {
-	services map[string]models.ServiceConfig
+	services    map[string]models.ServiceConfig
+	jwtProvider jwtModel.JWTProvider
 }
 
 type Handlers interface {
@@ -28,7 +31,8 @@ type Handlers interface {
 
 func NewHandlersManager(c config.ConfigProvider) *HandlersManager {
 	return &HandlersManager{
-		services: c.GetConfig().Services,
+		services:    c.GetConfig().Services,
+		jwtProvider: jwtModel.NewJWTManager(c.GetConfig().JWTSecretKey),
 	}
 }
 
@@ -57,4 +61,16 @@ func (h *HandlersManager) getGRPCService(serviceName string) (interface{}, *grpc
 	}
 
 	return clientInstance, conn, nil
+}
+
+func validationTokenData(claims jwtModel.Claims) error {
+	switch {
+	case claims.UserID == "":
+		fmt.Println(claims.UserID)
+		return errors.New("user id is required")
+	case claims.Username == "":
+		return errors.New("user name is required")
+	default:
+		return nil
+	}
 }

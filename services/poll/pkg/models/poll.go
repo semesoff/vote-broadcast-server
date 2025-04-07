@@ -3,15 +3,15 @@ package models
 type PollType int
 
 const (
-	single PollType = iota
-	multiple
+	Single PollType = iota
+	Multiple
 )
 
 func (p PollType) String() string {
 	switch p {
-	case single:
+	case Single:
 		return "single"
-	case multiple:
+	case Multiple:
 		return "multiple"
 	default:
 		return "unknown"
