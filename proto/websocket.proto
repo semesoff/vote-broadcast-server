@@ -26,7 +26,8 @@ message PollsResponse {
 // Send votes of poll
 
 message VotesRequest {
-  repeated Option options = 1;
+  int64 poll_id = 1;
+  repeated Option options = 2;
 }
 
 message Option {

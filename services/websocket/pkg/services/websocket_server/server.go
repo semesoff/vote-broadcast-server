@@ -18,17 +18,21 @@ type ServerManager struct {
 }
 
 type clientsData struct {
-	clients      map[string][]*websocket.Conn
-	countClients int
-	clientMutex  sync.RWMutex
+	getPollsClients map[*websocket.Conn]bool
+	getVotesClients map[int]map[*websocket.Conn]bool
+	countClients    int
+	pollsMutex      sync.RWMutex
+	votesMutex      sync.RWMutex
 }
 
 func NewServerManager(config models.WebSocketServer, dataChannels models.DataChannels) *ServerManager {
 	return &ServerManager{
 		config: config,
 		clientsData: &clientsData{
-			clients:     make(map[string][]*websocket.Conn),
-			clientMutex: sync.RWMutex{},
+			getPollsClients: make(map[*websocket.Conn]bool),
+			getVotesClients: make(map[int]map[*websocket.Conn]bool),
+			pollsMutex:      sync.RWMutex{},
+			votesMutex:      sync.RWMutex{},
 		},
 		dataChannels: dataChannels,
 	}
@@ -58,7 +62,7 @@ func (s *ServerManager) startWebSocketServer(ctx context.Context) {
 	}
 
 	http.HandleFunc("/getPolls", s.subscribeClientToMethod)
-	http.HandleFunc("/getVotes", s.subscribeClientToMethod)
+	http.HandleFunc("/getVotes/{poll_id}", s.subscribeClientToMethod)
 
 	go func() {
 		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {

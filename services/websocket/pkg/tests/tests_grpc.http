@@ -16,3 +16,36 @@ GRPC {{url}}/GetPolls
     }
   ]
 }
+
+### Send Votes
+GRPC {{url}}/GetVotes
+
+{
+  "poll_id": 1,
+  "options": [
+    {
+      "id": 1,
+      "count_votes": 2,
+      "users": [
+        {
+          "id": 1,
+          "name": "ivan"
+        },
+        {
+          "id": 2,
+          "name": "petya"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "count_votes": 3,
+      "users": [
+        {
+          "id": 3,
+          "name": "kolya"
+        }
+      ]
+    }
+  ]
+}
