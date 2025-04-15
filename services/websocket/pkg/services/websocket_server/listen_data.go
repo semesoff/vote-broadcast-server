@@ -15,10 +15,9 @@ func (s *ServerManager) listenUpdatedServerData(ctx context.Context) {
 		case data := <-s.dataChannels:
 			switch data.Method {
 			case models.GetPolls:
-				s.SendPolls(data.Data)
+				s.SendPolls(data.Data.([]*models.Poll))
 			case models.GetVotes:
-				// TODO: dynamic pollId
-				s.SendVotes(data.Data, 10)
+				s.SendVotes(data.Data.(models.PollVotes))
 			}
 		}
 	}

@@ -15,21 +15,23 @@ GRPC {{url}}/GetPoll
 GRPC {{url}}/CreatePoll
 
 {
-  "title": "Сносим 10 общагу",
-  "options": [
-    {
-      "id": "0",
-      "text": "Да"
-    },
-    {
-      "id": "0",
-      "text": "Нет"
-    },
-    {
-      "id": "0",
-      "text": "Не знаю"
-    }
-  ],
-  "type": "single",
-  "user_id": "1"
+  "poll": {
+    "title": "Hello",
+    "options": [
+      {
+        "id": 0,
+        "text": "Да"
+      },
+      {
+        "id": 0,
+        "text": "Нет"
+      },
+      {
+        "id": 0,
+        "text": "Не знаю"
+      }
+    ],
+    "type": "single",
+    "user_id": 1
+  }
 }

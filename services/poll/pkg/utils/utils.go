@@ -2,8 +2,11 @@ package utils
 
 import (
 	pollProto "vote-broadcast-server/proto/poll"
+	"vote-broadcast-server/proto/websocket"
 	"vote-broadcast-server/services/poll/pkg/models"
 )
+
+// Poll.proto
 
 func ConvertToProtoPolls(polls []models.Poll) []*pollProto.Poll {
 	protoPolls := make([]*pollProto.Poll, len(polls))
@@ -51,4 +54,18 @@ func StringToPollType(pollType string) models.PollType {
 	default:
 		return -1
 	}
+}
+
+// Websocket.proto
+
+func ConvertToProtoWebSocketPolls(polls []models.Poll) []*websocket.Poll {
+	response := make([]*websocket.Poll, len(polls))
+	for i, poll := range polls {
+		response[i] = &websocket.Poll{
+			Id:    int64(poll.ID),
+			Title: poll.Title,
+		}
+	}
+
+	return response
 }

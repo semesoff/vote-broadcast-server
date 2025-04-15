@@ -10,7 +10,6 @@ import (
 	"vote-broadcast-server/services/auth/pkg/middleware"
 	"vote-broadcast-server/services/poll/pkg/handlers"
 	"vote-broadcast-server/services/poll/pkg/models"
-	"vote-broadcast-server/services/poll/pkg/services"
 )
 
 type ServerManager struct {
@@ -31,10 +30,10 @@ func (s *ServerManager) GetPoll(ctx context.Context, req *poll.GetPollRequest) (
 	return s.handlers.GetPoll(ctx, req)
 }
 
-func NewServerManager(config models.GRPCServer, service *services.ServiceManager) *ServerManager {
+func NewServerManager(config models.GRPCServer, handlers *handlers.HandlersManager) *ServerManager {
 	return &ServerManager{
 		config:   config,
-		handlers: handlers.NewHandlersManager(service),
+		handlers: handlers,
 	}
 }
 

@@ -34,7 +34,7 @@ func (h *HandlersManager) GetPolls(ctx context.Context, req *websocket.PollsRequ
 
 func (h *HandlersManager) GetVotes(ctx context.Context, req *websocket.VotesRequest) (*websocket.VotesResponse, error) {
 	data := utils.ProtoVotesDataToModel(req)
-	utils.NotifyChannels(h.dataChannels, models.GetVotes, data)
+	utils.NotifyChannels(h.dataChannels, models.GetVotes, *data)
 
 	response := &websocket.VotesResponse{
 		Success: true,

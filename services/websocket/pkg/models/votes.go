@@ -1,7 +1,11 @@
 package models
 
+type PollVotes struct {
+	ID      int
+	Options map[int]Option
+}
+
 type Option struct {
-	ID         int
 	CountVotes int
 	Users      []User
 }

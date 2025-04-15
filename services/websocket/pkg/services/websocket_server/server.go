@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/gorilla/mux"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
@@ -33,6 +34,7 @@ func NewServerManager(config models.WebSocketServer, dataChannels models.DataCha
 			getVotesClients: make(map[int]map[*websocket.Conn]bool),
 			pollsMutex:      sync.RWMutex{},
 			votesMutex:      sync.RWMutex{},
+			countClients:    0,
 		},
 		dataChannels: dataChannels,
 	}
@@ -57,12 +59,15 @@ func (s *ServerManager) Start(waitGroup *sync.WaitGroup, ctx context.Context) {
 }
 
 func (s *ServerManager) startWebSocketServer(ctx context.Context) {
-	server := &http.Server{
-		Addr: fmt.Sprintf(":%s", s.config.Port),
-	}
+	router := mux.NewRouter()
 
-	http.HandleFunc("/getPolls", s.subscribeClientToMethod)
-	http.HandleFunc("/getVotes/{poll_id}", s.subscribeClientToMethod)
+	router.HandleFunc("/getPolls", s.subscribeClientToMethod)
+	router.HandleFunc("/getVotes/{poll_id}", s.subscribeClientToMethod)
+
+	server := &http.Server{
+		Addr:    fmt.Sprintf(":%s", s.config.Port),
+		Handler: router,
+	}
 
 	go func() {
 		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {

@@ -16,11 +16,13 @@ func ProtoPollsDataToModel(req *websocket.PollsRequest) []*models.Poll {
 	return polls
 }
 
-func ProtoVotesDataToModel(req *websocket.VotesRequest) map[int]*models.Option {
-	options := make(map[int]*models.Option)
+func ProtoVotesDataToModel(req *websocket.VotesRequest) *models.PollVotes {
+	pollVotes := models.PollVotes{
+		ID:      int(req.PollId),
+		Options: make(map[int]models.Option),
+	}
 	for _, optionProto := range req.Options {
-		option := &models.Option{}
-		option.ID = int(optionProto.Id)
+		option := models.Option{}
 		option.CountVotes = int(optionProto.CountVotes)
 		users := make([]models.User, 0)
 		for _, userProto := range optionProto.Users {
@@ -30,8 +32,9 @@ func ProtoVotesDataToModel(req *websocket.VotesRequest) map[int]*models.Option {
 			users = append(users, user)
 		}
 		option.Users = users
+		pollVotes.Options[int(optionProto.Id)] = option
 	}
-	return options
+	return &pollVotes
 }
 
 func NotifyChannels(dataChannels models.DataChannels, method models.MethodType, data interface{}) {

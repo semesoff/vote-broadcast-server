@@ -5,18 +5,25 @@ import (
 	pollProto "vote-broadcast-server/proto/poll"
 	"vote-broadcast-server/services/poll/pkg/models"
 	"vote-broadcast-server/services/poll/pkg/services"
+	"vote-broadcast-server/services/poll/pkg/services/notification_service"
 	"vote-broadcast-server/services/poll/pkg/services/poll"
 	"vote-broadcast-server/services/poll/pkg/utils"
 )
 
 type HandlersManager struct {
-	poll poll.Poll
+	poll                poll.Poll
+	notificationService notification_service.NotificationService
 }
 
-func NewHandlersManager(service *services.ServiceManager) *HandlersManager {
+func NewHandlersManager(service *services.ServiceManager, notificationService notification_service.NotificationService) *HandlersManager {
 	return &HandlersManager{
-		poll: poll.NewPollService(service),
+		poll:                poll.NewPollService(service),
+		notificationService: notificationService,
 	}
+}
+
+func (h *HandlersManager) GetPollManager() *poll.Poll {
+	return &h.poll
 }
 
 type Handlers interface {
@@ -51,6 +58,9 @@ func (h *HandlersManager) CreatePoll(ctx context.Context, req *pollProto.CreateP
 	if err := h.poll.CreatePoll(*pollData, userId); err != nil {
 		return nil, err
 	}
+
+	// notify channel about updated polls
+	h.notificationService.GetPolls()
 
 	response := &pollProto.CreatePollResponse{
 		Success: true,

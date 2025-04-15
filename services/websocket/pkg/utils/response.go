@@ -1,17 +1,16 @@
 package utils
 
 import (
-	"net/http"
+	"github.com/gorilla/websocket"
 )
 
-func RespondWithMessage(w http.ResponseWriter, msg string, code int) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(code)
-	w.Write([]byte(msg))
+// RespondWithError - response with error and close the connection
+func RespondWithError(c *websocket.Conn, msg string, code int) {
+	c.WriteMessage(code, []byte(msg))
+	c.Close()
 }
 
-func ResponseWithSuccess(w http.ResponseWriter, msg string) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(msg))
+// RespondWithSuccess - response with success
+func RespondWithSuccess(c *websocket.Conn, msg string, code int) {
+	c.WriteMessage(code, []byte(msg))
 }

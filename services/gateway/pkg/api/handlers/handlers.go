@@ -15,8 +15,9 @@ import (
 )
 
 type HandlersManager struct {
-	services    map[string]models.ServiceConfig
-	jwtProvider jwtModel.JWTProvider
+	grpcConnections map[string]*grpc.ClientConn
+	services        map[string]models.ServiceConfig
+	jwtProvider     jwtModel.JWTProvider
 }
 
 type Handlers interface {
@@ -31,8 +32,9 @@ type Handlers interface {
 
 func NewHandlersManager(c config.ConfigProvider) *HandlersManager {
 	return &HandlersManager{
-		services:    c.GetConfig().Services,
-		jwtProvider: jwtModel.NewJWTManager(c.GetConfig().JWTSecretKey),
+		services:        c.GetConfig().Services,
+		jwtProvider:     jwtModel.NewJWTManager(c.GetConfig().JWTSecretKey),
+		grpcConnections: make(map[string]*grpc.ClientConn),
 	}
 }
 
@@ -40,6 +42,13 @@ func (h *HandlersManager) getGRPCService(serviceName string) (interface{}, *grpc
 	service, ok := h.services[serviceName]
 	if !ok {
 		return nil, nil, errors.New("service not found: " + serviceName)
+	}
+
+	// Check if the service is already connected
+	if conn, exists := h.grpcConnections[serviceName]; exists {
+		// Check if the connection is still alive
+		fmt.Printf("state of %s: %s", serviceName, conn.GetState().String())
+		return conn, nil, nil
 	}
 
 	conn, err := grpc.NewClient(service.URL, grpc.WithTransportCredentials(insecure.NewCredentials()))
