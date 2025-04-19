@@ -22,7 +22,7 @@ services:
   vote:
     url: "localhost:5003"
     routes:
-      - path: /api/vote
+      - path: /api/votes
         method: POST
       - path: /api/votes/:id
         method: GET
