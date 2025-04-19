@@ -96,7 +96,7 @@ docker-compose up --build
 }
 ```
 - Заголовки
-```json
+```text
 Authorization: Bearer <your_jwt_token>
 ```
 - Примечание
