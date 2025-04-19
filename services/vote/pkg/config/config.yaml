@@ -1,3 +1,8 @@
 GRPCServer:
   port: 5003
   network: tcp
+
+WebSocketGRPCServer:
+  port: 5004
+  network: tcp
+  url: localhost:5004

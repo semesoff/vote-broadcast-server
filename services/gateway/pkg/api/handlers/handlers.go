@@ -75,7 +75,6 @@ func (h *HandlersManager) getGRPCService(serviceName string) (interface{}, *grpc
 func validationTokenData(claims jwtModel.Claims) error {
 	switch {
 	case claims.UserID == "":
-		fmt.Println(claims.UserID)
 		return errors.New("user id is required")
 	case claims.Username == "":
 		return errors.New("user name is required")

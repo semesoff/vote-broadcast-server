@@ -20,6 +20,11 @@ func (p PollType) String() string {
 
 type Votes map[int]Vote
 
+type PollVotes struct {
+	PollId int
+	Votes  Votes
+}
+
 type Vote struct {
 	OptionId   int
 	CountVotes int

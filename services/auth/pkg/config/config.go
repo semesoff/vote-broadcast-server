@@ -55,6 +55,8 @@ func (cm *ConfigManager) Init() {
 		Driver:   os.Getenv("DB_DRIVER"),
 	}
 
+	cm.config.JWTSecretKey = models.JWTSecretKey(os.Getenv("JWT_SECRET_KEY"))
+
 	log.Println("Config is initialized")
 }
 

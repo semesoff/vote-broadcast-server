@@ -10,7 +10,7 @@ import (
 	"os/signal"
 	"sync"
 	"vote-broadcast-server/proto/websocket"
-	"vote-broadcast-server/services/poll/pkg/models"
+	"vote-broadcast-server/services/vote/pkg/models"
 )
 
 type WebSocketNotifierService struct {
@@ -60,7 +60,6 @@ func (s *WebSocketNotifierService) Start() {
 
 func (s *WebSocketNotifierService) getGRPCServer(serviceName string) (interface{}, *grpc.ClientConn, error) {
 	if data, exists := s.grpcConnections[serviceName]; exists {
-		log.Println("Data loaded from cache")
 		return data.clientInstance, data.conn, nil
 	}
 

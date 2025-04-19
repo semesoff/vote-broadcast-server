@@ -1,5 +1,5 @@
 @host = localhost:8080
-@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNSIsInVzZXJuYW1lIjoidXNlciIsImV4cCI6MTc0MzUxMjgzOCwiaWF0IjoxNzQzNTExMDM4fQ.mvUH2aJ-CdMl3NMkeImUJhssQvNdGOns28dVwHTqdD4
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTAiLCJ1c2VybmFtZSI6InB1c2VyMTIzIiwiZXhwIjoxNzQ1MDY3NTk4LCJpYXQiOjE3NDUwNjU3OTh9.44T9cGvl_ij77c-0IrWxB37w220tK0njtKyni7Bt-b4
 
 // HTTP Tests
 ### Register User
@@ -8,7 +8,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "username": "user1234123",
+  "username": "puser123",
   "password": "pass1234"
 }
 
@@ -18,8 +18,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "username": "user",
-  "password": "pass"
+  "username": "puser123",
+  "password": "pass1234"
 }
 
 ### Get Polls
@@ -61,8 +61,8 @@ Accept: application/json
 Authorization: {{token}}
 
 {
-  "poll_id": 13,
+  "poll_id": 24,
   "options_id": [
-    10, 11, 12
+    40
   ]
 }

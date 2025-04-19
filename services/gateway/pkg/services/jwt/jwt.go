@@ -32,7 +32,6 @@ func (j *JWTManager) VerifyToken(tokenString string) (*Claims, error) {
 		}
 		return j.secretKey, nil
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -40,6 +39,5 @@ func (j *JWTManager) VerifyToken(tokenString string) (*Claims, error) {
 	if claims, ok := token.Claims.(*Claims); ok && token.Valid {
 		return claims, nil
 	}
-
 	return nil, errors.New("invalid token")
 }

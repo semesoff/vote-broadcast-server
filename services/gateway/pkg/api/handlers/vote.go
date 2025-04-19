@@ -78,18 +78,18 @@ func (h *HandlersManager) CreateVote(c *gin.Context) {
 
 	dataFromToken, err := h.jwtProvider.VerifyToken(token)
 	if err != nil {
-		utils.RespondWithError(c.Writer, http.StatusUnauthorized, "Invalid token")
+		utils.RespondWithError(c.Writer, http.StatusUnauthorized, err.Error())
 		return
 	}
 
 	if err := validationTokenData(*dataFromToken); err != nil {
-		utils.RespondWithError(c.Writer, http.StatusUnauthorized, "Invalid token")
+		utils.RespondWithError(c.Writer, http.StatusUnauthorized, err.Error())
 		return
 	}
 
 	userIntId, err := strconv.Atoi(dataFromToken.UserID)
 	if err != nil {
-		utils.RespondWithError(c.Writer, http.StatusBadRequest, "userId must be an integer")
+		utils.RespondWithError(c.Writer, http.StatusBadRequest, err.Error())
 		return
 	}
 

@@ -3,6 +3,7 @@ package utils
 import (
 	"errors"
 	voteProto "vote-broadcast-server/proto/vote"
+	"vote-broadcast-server/proto/websocket"
 	"vote-broadcast-server/services/vote/pkg/models"
 )
 
@@ -73,4 +74,24 @@ func ConvertStringToPollType(pollType string) models.PollType {
 	default:
 		return models.PollType(-1)
 	}
+}
+
+func ConvertToProtoWebsocketVotes(pollVotes models.PollVotes) []*websocket.Option {
+	response := make([]*websocket.Option, len(pollVotes.Votes))
+	k := 0
+	for optionId, optionData := range pollVotes.Votes {
+		protoOption := &websocket.Option{}
+		protoOption.Id = int64(optionId)
+		protoOption.CountVotes = int64(optionData.CountVotes)
+		protoOption.Users = make([]*websocket.User, len(optionData.Users))
+		for i, user := range optionData.Users {
+			protoOption.Users[i] = &websocket.User{
+				Id:   int64(user.ID),
+				Name: user.Name,
+			}
+		}
+		response[k] = protoOption
+		k++
+	}
+	return response
 }
