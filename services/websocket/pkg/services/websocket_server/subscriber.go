@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	utils2 "vote-broadcast-server/services/websocket/pkg/utils"
+	utils2 "websocket-service/pkg/utils"
 )
 
 var upgrader = websocket.Upgrader{}

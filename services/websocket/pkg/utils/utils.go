@@ -1,8 +1,8 @@
 package utils
 
 import (
-	"vote-broadcast-server/proto/websocket"
-	"vote-broadcast-server/services/websocket/pkg/models"
+	"websocket-service/pkg/models"
+	"websocket-service/proto/websocket"
 )
 
 func ProtoPollsDataToModel(req *websocket.PollsRequest) []*models.Poll {

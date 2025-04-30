@@ -4,7 +4,7 @@ import (
 	"gopkg.in/yaml.v2"
 	"log"
 	"os"
-	"vote-broadcast-server/services/websocket/pkg/models"
+	"websocket-service/pkg/models"
 )
 
 type ConfigManager struct {

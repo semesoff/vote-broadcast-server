@@ -2,9 +2,9 @@ package handlers
 
 import (
 	"context"
-	"vote-broadcast-server/proto/websocket"
-	"vote-broadcast-server/services/websocket/pkg/models"
-	"vote-broadcast-server/services/websocket/pkg/utils"
+	"websocket-service/pkg/models"
+	"websocket-service/pkg/utils"
+	"websocket-service/proto/websocket"
 )
 
 type HandlersManager struct {

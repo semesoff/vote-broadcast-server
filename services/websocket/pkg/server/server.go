@@ -6,10 +6,10 @@ import (
 	"os"
 	"os/signal"
 	"sync"
-	"vote-broadcast-server/services/websocket/pkg/config"
-	"vote-broadcast-server/services/websocket/pkg/models"
-	"vote-broadcast-server/services/websocket/pkg/services/grpc_server"
-	"vote-broadcast-server/services/websocket/pkg/services/websocket_server"
+	"websocket-service/pkg/config"
+	"websocket-service/pkg/models"
+	"websocket-service/pkg/services/grpc_server"
+	"websocket-service/pkg/services/websocket_server"
 )
 
 type ServerManager struct {

@@ -7,10 +7,10 @@ import (
 	"log"
 	"net"
 	"sync"
-	"vote-broadcast-server/proto/websocket"
-	"vote-broadcast-server/services/websocket/pkg/handlers"
-	"vote-broadcast-server/services/websocket/pkg/middleware"
-	"vote-broadcast-server/services/websocket/pkg/models"
+	"websocket-service/pkg/handlers"
+	"websocket-service/pkg/middleware"
+	"websocket-service/pkg/models"
+	"websocket-service/proto/websocket"
 )
 
 type ServerManager struct {

@@ -9,7 +9,7 @@ import (
 	"log"
 	"net/http"
 	"sync"
-	"vote-broadcast-server/services/websocket/pkg/models"
+	"websocket-service/pkg/models"
 )
 
 type ServerManager struct {

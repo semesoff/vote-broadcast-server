@@ -1,7 +1,7 @@
 package main
 
 import (
-	server2 "vote-broadcast-server/services/websocket/pkg/server"
+	server2 "websocket-service/pkg/server"
 )
 
 func main() {

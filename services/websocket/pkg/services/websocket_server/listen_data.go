@@ -3,7 +3,7 @@ package websocket_server
 import (
 	"context"
 	"log"
-	"vote-broadcast-server/services/websocket/pkg/models"
+	"websocket-service/pkg/models"
 )
 
 func (s *ServerManager) listenUpdatedServerData(ctx context.Context) {

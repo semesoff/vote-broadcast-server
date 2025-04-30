@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"github.com/gorilla/websocket"
 	"log"
-	"vote-broadcast-server/services/websocket/pkg/models"
+	"websocket-service/pkg/models"
 )
 
 func (s *ServerManager) SendPolls(polls []*models.Poll) {
