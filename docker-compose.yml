@@ -1,13 +1,81 @@
 services:
-  database:
-    image: postgres:latest
-    container_name: vote-broadcast-server-db
+  db:
+    image: postgres:15
+    container_name: db
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     ports:
-      - "${DB_PORT}:5432"
+      - ${DB_PORT}:${DB_PORT}
     volumes:
+      - postgres_data:/var/lib/postgresql/data
       - ./init-scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
-  
+    networks:
+      - app-network
+
+  gateway:
+    build:
+      context: ./services/gateway/
+    container_name: gateway-service
+    ports:
+      - ${GATEWAY_PORT}:${GATEWAY_PORT}
+    depends_on:
+      - auth
+      - poll
+      - vote
+      - websocket
+    networks:
+      - app-network
+
+  auth:
+    build:
+      context: ./services/auth/
+    container_name: auth-service
+    ports:
+      - ${AUTH_PORT}:${AUTH_PORT}
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  poll:
+    build:
+      context: ./services/poll/
+    container_name: poll-service
+    ports:
+      - ${POLL_PORT}:${POLL_PORT}
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  vote:
+    build:
+      context: ./services/vote/
+    container_name: vote-service
+    ports:
+      - ${VOTE_PORT}:${VOTE_PORT}
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  websocket:
+    build:
+      context: ./services/websocket/
+    container_name: websocket-service
+    ports:
+      - ${WEBSOCKET_PORT}:${WEBSOCKET_PORT}
+    depends_on:
+      - poll
+      - vote
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge
