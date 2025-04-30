@@ -1,10 +1,10 @@
 package jwtModel
 
 import (
+	"auth-service/pkg/models"
 	"errors"
 	"github.com/golang-jwt/jwt/v5"
 	"time"
-	"vote-broadcast-server/services/auth/pkg/models"
 )
 
 type JWTManager struct {

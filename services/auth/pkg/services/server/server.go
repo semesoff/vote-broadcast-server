@@ -1,16 +1,16 @@
 package server
 
 import (
+	"auth-service/pkg/handlers"
+	"auth-service/pkg/middleware"
+	"auth-service/pkg/models"
+	"auth-service/pkg/services"
+	"auth-service/proto/auth"
 	"context"
 	"fmt"
 	"google.golang.org/grpc"
 	"log"
 	"net"
-	"vote-broadcast-server/proto/auth"
-	"vote-broadcast-server/services/auth/pkg/handlers"
-	"vote-broadcast-server/services/auth/pkg/middleware"
-	"vote-broadcast-server/services/auth/pkg/models"
-	"vote-broadcast-server/services/auth/pkg/services"
 )
 
 type ServerManager struct {

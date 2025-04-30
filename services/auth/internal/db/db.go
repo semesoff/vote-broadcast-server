@@ -1,11 +1,11 @@
 package db
 
 import (
+	"auth-service/pkg/models"
 	"database/sql"
 	"fmt"
 	_ "github.com/lib/pq"
 	"log"
-	"vote-broadcast-server/services/auth/pkg/models"
 )
 
 type DatabaseManager struct {

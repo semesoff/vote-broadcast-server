@@ -1,8 +1,8 @@
 package services
 
 import (
-	db2 "vote-broadcast-server/services/auth/internal/db"
-	"vote-broadcast-server/services/auth/pkg/models"
+	db2 "auth-service/internal/db"
+	"auth-service/pkg/models"
 )
 
 type ServiceManager struct {

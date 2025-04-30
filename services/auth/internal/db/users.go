@@ -1,9 +1,9 @@
 package db
 
 import (
+	"auth-service/pkg/models"
 	"database/sql"
 	"errors"
-	"vote-broadcast-server/services/auth/pkg/models"
 )
 
 func (d *DatabaseManager) AddUser(user models.User) (models.UserWithID, error) {

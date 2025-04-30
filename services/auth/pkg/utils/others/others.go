@@ -1,8 +1,8 @@
 package others
 
 import (
+	"auth-service/pkg/models"
 	"errors"
-	"vote-broadcast-server/services/auth/pkg/models"
 )
 
 func CheckUserData(user models.User) error {

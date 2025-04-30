@@ -1,12 +1,12 @@
 package handlers
 
 import (
+	"auth-service/pkg/models"
+	"auth-service/pkg/services"
+	auth2 "auth-service/pkg/services/auth"
+	"auth-service/pkg/utils/others"
+	"auth-service/proto/auth"
 	"context"
-	"vote-broadcast-server/proto/auth"
-	"vote-broadcast-server/services/auth/pkg/models"
-	"vote-broadcast-server/services/auth/pkg/services"
-	auth2 "vote-broadcast-server/services/auth/pkg/services/auth"
-	"vote-broadcast-server/services/auth/pkg/utils/others"
 )
 
 type HandlersManager struct {

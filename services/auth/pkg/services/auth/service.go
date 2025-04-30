@@ -1,12 +1,12 @@
 package auth
 
 import (
+	"auth-service/pkg/models"
+	"auth-service/pkg/services"
+	"auth-service/pkg/services/jwt"
+	"auth-service/pkg/utils/hash"
 	"errors"
 	"golang.org/x/crypto/bcrypt"
-	"vote-broadcast-server/services/auth/pkg/models"
-	"vote-broadcast-server/services/auth/pkg/services"
-	"vote-broadcast-server/services/auth/pkg/services/jwt"
-	"vote-broadcast-server/services/auth/pkg/utils/hash"
 )
 
 type AuthManager struct {

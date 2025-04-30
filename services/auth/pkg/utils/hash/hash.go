@@ -1,9 +1,9 @@
 package hash
 
 import (
+	"auth-service/pkg/models"
 	"errors"
 	"golang.org/x/crypto/bcrypt"
-	"vote-broadcast-server/services/auth/pkg/models"
 )
 
 func HashPassword(user *models.User) error {

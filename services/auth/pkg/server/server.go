@@ -1,9 +1,9 @@
 package server
 
 import (
-	"vote-broadcast-server/services/auth/pkg/config"
-	"vote-broadcast-server/services/auth/pkg/services"
-	"vote-broadcast-server/services/auth/pkg/services/server"
+	"auth-service/pkg/config"
+	"auth-service/pkg/services"
+	"auth-service/pkg/services/server"
 )
 
 type ServerManager struct {
