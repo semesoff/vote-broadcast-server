@@ -1,5 +1,5 @@
 @host = localhost:8080
-@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNCIsInVzZXJuYW1lIjoidXNlcjEyMyIsImV4cCI6MTc0NjA1NTExMywiaWF0IjoxNzQ2MDUzMzEzfQ.vFyMFKMNCf34vcUlSP1ahCkQMWLslviSfvYujCnU1a4
+@token = Bearer token
 
 // HTTP Tests
 ### Register User
