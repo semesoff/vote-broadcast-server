@@ -1,11 +1,11 @@
 package config
 
 import (
+	"gateway-service/pkg/models"
 	"github.com/joho/godotenv"
 	"gopkg.in/yaml.v2"
 	"log"
 	"os"
-	"vote-broadcast-server/services/gateway/pkg/models"
 )
 
 type ConfigProvider interface {
@@ -29,7 +29,7 @@ func (cm *ConfigManager) Init() {
 		return
 	}
 
-	if err := godotenv.Load("../../.env"); err != nil {
+	if err := godotenv.Load(".env"); err != nil {
 		log.Fatalln("Error loading .env file: ", err)
 		return
 	}

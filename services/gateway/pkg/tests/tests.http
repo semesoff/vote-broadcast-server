@@ -1,5 +1,5 @@
 @host = localhost:8080
-@token = Bearer <token>
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNCIsInVzZXJuYW1lIjoidXNlcjEyMyIsImV4cCI6MTc0NjA1NTExMywiaWF0IjoxNzQ2MDUzMzEzfQ.vFyMFKMNCf34vcUlSP1ahCkQMWLslviSfvYujCnU1a4
 
 // HTTP Tests
 ### Register User
@@ -8,7 +8,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "username": "puser123",
+  "username": "user123",
   "password": "pass1234"
 }
 
@@ -18,7 +18,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "username": "puser123",
+  "username": "user123",
   "password": "pass1234"
 }
 
@@ -27,7 +27,7 @@ GET {{host}}/api/polls
 Accept: application/json
 
 ### Get Poll
-GET {{host}}/api/polls/13
+GET {{host}}/api/polls/3
 Accept: application/json
 
 ### Create Poll
@@ -52,7 +52,7 @@ Authorization: {{token}}
 }
 
 ### GetVotes
-GET {{host}}/api/votes/13
+GET {{host}}/api/votes/3
 
 ### Create Vote
 POST {{host}}/api/votes
@@ -61,8 +61,8 @@ Accept: application/json
 Authorization: {{token}}
 
 {
-  "poll_id": 24,
+  "poll_id": 3,
   "options_id": [
-    40
+    8, 9
   ]
 }

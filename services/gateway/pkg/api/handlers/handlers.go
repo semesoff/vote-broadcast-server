@@ -3,15 +3,15 @@ package handlers
 import (
 	"errors"
 	"fmt"
+	"gateway-service/pkg/config"
+	"gateway-service/pkg/models"
+	jwtModel "gateway-service/pkg/services/jwt"
+	"gateway-service/proto/auth"
+	"gateway-service/proto/poll"
+	"gateway-service/proto/vote"
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	"vote-broadcast-server/proto/auth"
-	"vote-broadcast-server/proto/poll"
-	"vote-broadcast-server/proto/vote"
-	"vote-broadcast-server/services/gateway/pkg/config"
-	"vote-broadcast-server/services/gateway/pkg/models"
-	jwtModel "vote-broadcast-server/services/gateway/pkg/services/jwt"
 )
 
 type HandlersManager struct {

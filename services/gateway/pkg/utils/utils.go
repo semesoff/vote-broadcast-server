@@ -2,9 +2,9 @@ package utils
 
 import (
 	"encoding/json"
+	"gateway-service/pkg/models"
+	"gateway-service/proto/vote"
 	"net/http"
-	"vote-broadcast-server/proto/vote"
-	"vote-broadcast-server/services/gateway/pkg/models"
 )
 
 func RespondWithError(w http.ResponseWriter, statusCode int, message string) {

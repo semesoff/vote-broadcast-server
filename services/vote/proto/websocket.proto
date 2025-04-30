@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package websocket;
+
+option go_package = "websocket/";
+
+service WebSocketService {
+  rpc GetPolls (PollsRequest) returns (PollsResponse); // Get all polls
+  rpc GetVotes (VotesRequest) returns (VotesResponse); // Get all votes
+}
+
+// Send polls
+message PollsRequest {
+  repeated Poll polls = 1;
+}
+
+message Poll {
+  int64 id = 1;
+  string title = 2;
+}
+
+message PollsResponse {
+  bool success = 1;
+}
+
+// Send votes of poll
+
+message VotesRequest {
+  int64 poll_id = 1;
+  repeated Option options = 2;
+}
+
+message Option {
+  int64 id = 1;
+  int64 count_votes = 2;
+  repeated User users = 3;
+}
+
+message User {
+  int64 id = 1;
+  string name = 2;
+}
+
+message VotesResponse {
+  bool success = 1;
+}

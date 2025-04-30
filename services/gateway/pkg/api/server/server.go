@@ -2,12 +2,12 @@ package server
 
 import (
 	"fmt"
+	"gateway-service/pkg/api/handlers"
+	"gateway-service/pkg/api/middleware"
+	"gateway-service/pkg/api/routes"
+	"gateway-service/pkg/config"
 	"github.com/gin-gonic/gin"
 	"log"
-	"vote-broadcast-server/services/gateway/pkg/api/handlers"
-	"vote-broadcast-server/services/gateway/pkg/api/middleware"
-	"vote-broadcast-server/services/gateway/pkg/api/routes"
-	"vote-broadcast-server/services/gateway/pkg/config"
 )
 
 type ServerManager struct {

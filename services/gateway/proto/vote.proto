@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package vote;
+
+option go_package = "vote/";
+
+service VoteService {
+  rpc GetVotes (GetVotesRequest) returns (GetVotesResponse); // Get all votes
+  rpc CreateVote (CreateVoteRequest) returns (CreateVoteResponse); // Create a vote
+}
+
+// Get Votes of Poll
+message GetVotesRequest {
+  int64 poll_id = 1;
+}
+
+message GetVotesResponse {
+  repeated Option options = 1;
+}
+
+message Option {
+  int64 id = 1;
+  int64 count_votes = 2;
+  repeated User users = 3;
+}
+
+message User {
+  int64 id = 1;
+  string name = 2;
+}
+
+// Create vote
+message CreateVoteRequest {
+  int64 poll_id = 1;
+  int64 user_id = 2;
+  repeated int64 options_id = 3;
+}
+
+message CreateVoteResponse {
+  bool success = 1;
+}

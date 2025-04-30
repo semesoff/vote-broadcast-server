@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package poll;
+
+option go_package = "poll/";
+
+// PollService - service for creating and getting polls
+service PollService {
+  rpc GetPolls (GetPollsRequest) returns (GetPollsResponse); // Get all polls
+  rpc CreatePoll (CreatePollRequest) returns (CreatePollResponse); // Create a poll
+  rpc GetPoll (GetPollRequest) returns (GetPollResponse); // Get data for a poll
+}
+
+// Get polls
+message GetPollsRequest {
+
+}
+
+message GetPollsResponse {
+  repeated Poll polls = 1;
+}
+
+message Poll {
+  int64 id = 1;
+  string title = 2;
+  PollType type = 3;
+}
+
+enum PollType {
+  single = 0;
+  multiple = 1;
+}
+
+message Option {
+  int64 id = 1;
+  string text = 2;
+}
+
+// Create polls
+message CreatePollRequest {
+  PollCreateData poll = 1;
+}
+
+message PollCreateData {
+  string title = 1;
+  repeated Option options = 2;
+  PollType type = 3;
+  int64 user_id = 4;
+}
+
+message CreatePollResponse {
+  bool success = 1;
+}
+
+// Get data for a poll
+message GetPollRequest {
+  int64 id = 1;
+}
+
+message GetPollResponse {
+  PollData poll = 1;
+}
+
+message PollData {
+  int64 id = 1;
+  string title = 2;
+  optional PollType type = 3;
+  repeated Option options = 4;
+}

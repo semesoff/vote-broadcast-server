@@ -3,11 +3,11 @@ package handlers
 import (
 	"context"
 	"encoding/json"
+	"gateway-service/pkg/utils"
+	"gateway-service/proto/auth"
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
 	"net/http"
-	"vote-broadcast-server/proto/auth"
-	"vote-broadcast-server/services/gateway/pkg/utils"
 )
 
 func (h *HandlersManager) RegisterUser(c *gin.Context) {

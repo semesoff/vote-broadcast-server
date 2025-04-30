@@ -2,7 +2,7 @@ port: 8080
 
 services:
   auth:
-    url: "localhost:5001"
+    url: "auth-service:5001"
     routes:
       - path: /api/register
         method: POST
@@ -10,7 +10,7 @@ services:
         method: POST
 
   poll:
-    url: "localhost:5002"
+    url: "poll-service:5002"
     routes:
       - path: /api/polls
         method: GET
@@ -20,7 +20,7 @@ services:
         method: GET
 
   vote:
-    url: "localhost:5003"
+    url: "vote-service:5003"
     routes:
       - path: /api/votes
         method: POST
@@ -28,7 +28,7 @@ services:
         method: GET
 
   websocket:
-    url: "localhost:5004"
+    url: "websocket-service:5004"
     routes:
       - path: /ws
         method: GET

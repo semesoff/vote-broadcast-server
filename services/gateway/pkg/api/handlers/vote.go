@@ -3,14 +3,14 @@ package handlers
 import (
 	"context"
 	"encoding/json"
+	"gateway-service/pkg/models"
+	"gateway-service/pkg/utils"
+	"gateway-service/proto/vote"
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
 	"net/http"
 	"strconv"
 	"strings"
-	"vote-broadcast-server/proto/vote"
-	"vote-broadcast-server/services/gateway/pkg/models"
-	"vote-broadcast-server/services/gateway/pkg/utils"
 )
 
 func (h *HandlersManager) GetVotes(c *gin.Context) {

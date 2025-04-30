@@ -1,4 +1,4 @@
 FROM ubuntu:latest
-LABEL authors="semesoff"
+LABEL authors="enter"
 
 ENTRYPOINT ["top", "-b"]

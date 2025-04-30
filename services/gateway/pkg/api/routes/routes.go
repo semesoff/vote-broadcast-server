@@ -2,10 +2,10 @@ package routes
 
 import (
 	"errors"
+	"gateway-service/pkg/api/handlers"
+	"gateway-service/pkg/models"
 	"github.com/gin-gonic/gin"
 	"log"
-	"vote-broadcast-server/services/gateway/pkg/api/handlers"
-	"vote-broadcast-server/services/gateway/pkg/models"
 )
 
 func InitRoutes(mux *gin.Engine, services map[string]models.ServiceConfig, handlers handlers.Handlers) {

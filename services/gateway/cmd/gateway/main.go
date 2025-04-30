@@ -1,9 +1,9 @@
 package main
 
 import (
-	"vote-broadcast-server/services/gateway/pkg/api/handlers"
-	"vote-broadcast-server/services/gateway/pkg/api/server"
-	"vote-broadcast-server/services/gateway/pkg/config"
+	"gateway-service/pkg/api/handlers"
+	"gateway-service/pkg/api/server"
+	"gateway-service/pkg/config"
 )
 
 func main() {
