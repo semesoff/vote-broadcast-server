@@ -3,8 +3,8 @@ package db
 import (
 	"errors"
 	"fmt"
-	"vote-broadcast-server/services/vote/pkg/models"
-	"vote-broadcast-server/services/vote/pkg/utils"
+	"vote-service/pkg/models"
+	"vote-service/pkg/utils"
 )
 
 // GetVotes Get poll votes by pollId

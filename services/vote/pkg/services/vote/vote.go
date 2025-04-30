@@ -1,8 +1,8 @@
 package vote
 
 import (
-	"vote-broadcast-server/services/vote/pkg/models"
-	"vote-broadcast-server/services/vote/pkg/services"
+	"vote-service/pkg/models"
+	"vote-service/pkg/services"
 )
 
 type VoteManager struct {

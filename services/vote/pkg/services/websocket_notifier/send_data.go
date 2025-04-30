@@ -2,9 +2,9 @@ package websocket_notifier
 
 import (
 	"context"
-	"vote-broadcast-server/proto/websocket"
-	"vote-broadcast-server/services/vote/pkg/models"
-	"vote-broadcast-server/services/vote/pkg/utils"
+	"vote-service/pkg/models"
+	"vote-service/pkg/utils"
+	"vote-service/proto/websocket"
 )
 
 func (s *WebSocketNotifierService) SendVotes(pollVotes models.PollVotes) {

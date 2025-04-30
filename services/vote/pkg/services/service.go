@@ -1,8 +1,8 @@
 package services
 
 import (
-	"vote-broadcast-server/services/vote/internal/db"
-	"vote-broadcast-server/services/vote/pkg/models"
+	"vote-service/internal/db"
+	"vote-service/pkg/models"
 )
 
 type ServiceManager struct {

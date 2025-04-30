@@ -3,7 +3,7 @@ package websocket_notifier
 import (
 	"context"
 	"log"
-	"vote-broadcast-server/services/vote/pkg/models"
+	"vote-service/pkg/models"
 )
 
 func (s *WebSocketNotifierService) listenUpdatedServerData(ctx context.Context) {

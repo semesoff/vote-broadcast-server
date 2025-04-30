@@ -2,9 +2,9 @@ package utils
 
 import (
 	"errors"
-	voteProto "vote-broadcast-server/proto/vote"
-	"vote-broadcast-server/proto/websocket"
-	"vote-broadcast-server/services/vote/pkg/models"
+	"vote-service/pkg/models"
+	voteProto "vote-service/proto/vote"
+	"vote-service/proto/websocket"
 )
 
 func CheckGetVotesData(req *voteProto.GetVotesRequest) error {

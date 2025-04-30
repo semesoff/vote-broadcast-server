@@ -9,8 +9,8 @@ import (
 	"os"
 	"os/signal"
 	"sync"
-	"vote-broadcast-server/proto/websocket"
-	"vote-broadcast-server/services/vote/pkg/models"
+	"vote-service/pkg/models"
+	"vote-service/proto/websocket"
 )
 
 type WebSocketNotifierService struct {

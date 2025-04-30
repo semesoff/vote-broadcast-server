@@ -2,11 +2,11 @@ package handlers
 
 import (
 	"context"
-	voteProto "vote-broadcast-server/proto/vote"
-	"vote-broadcast-server/services/vote/pkg/services"
-	"vote-broadcast-server/services/vote/pkg/services/notification_service"
-	"vote-broadcast-server/services/vote/pkg/services/vote"
-	"vote-broadcast-server/services/vote/pkg/utils"
+	"vote-service/pkg/services"
+	"vote-service/pkg/services/notification_service"
+	"vote-service/pkg/services/vote"
+	"vote-service/pkg/utils"
+	voteProto "vote-service/proto/vote"
 )
 
 type HandlersManager struct {

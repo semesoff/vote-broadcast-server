@@ -1,9 +1,9 @@
 package notification_service
 
 import (
-	"vote-broadcast-server/services/vote/pkg/models"
-	"vote-broadcast-server/services/vote/pkg/services"
-	"vote-broadcast-server/services/vote/pkg/services/vote"
+	"vote-service/pkg/models"
+	"vote-service/pkg/services"
+	"vote-service/pkg/services/vote"
 )
 
 type NotificationServiceManager struct {
