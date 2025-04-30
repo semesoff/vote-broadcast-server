@@ -1,9 +1,9 @@
 package utils
 
 import (
-	pollProto "vote-broadcast-server/proto/poll"
-	"vote-broadcast-server/proto/websocket"
-	"vote-broadcast-server/services/poll/pkg/models"
+	"poll-service/pkg/models"
+	pollProto "poll-service/proto/poll"
+	"poll-service/proto/websocket"
 )
 
 // Poll.proto

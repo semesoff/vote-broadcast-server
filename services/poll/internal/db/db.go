@@ -5,7 +5,7 @@ import (
 	"fmt"
 	_ "github.com/lib/pq"
 	"log"
-	"vote-broadcast-server/services/poll/pkg/models"
+	"poll-service/pkg/models"
 )
 
 type DatabaseManager struct {

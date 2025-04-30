@@ -6,10 +6,10 @@ import (
 	"google.golang.org/grpc"
 	"log"
 	"net"
-	"vote-broadcast-server/proto/poll"
-	"vote-broadcast-server/services/auth/pkg/middleware"
-	"vote-broadcast-server/services/poll/pkg/handlers"
-	"vote-broadcast-server/services/poll/pkg/models"
+	"poll-service/pkg/handlers"
+	"poll-service/pkg/middleware"
+	"poll-service/pkg/models"
+	"poll-service/proto/poll"
 )
 
 type ServerManager struct {

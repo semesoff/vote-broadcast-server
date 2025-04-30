@@ -3,9 +3,9 @@ package websocket_notifier
 import (
 	"context"
 	"google.golang.org/grpc"
-	"vote-broadcast-server/proto/websocket"
-	"vote-broadcast-server/services/poll/pkg/models"
-	"vote-broadcast-server/services/poll/pkg/utils"
+	"poll-service/pkg/models"
+	"poll-service/pkg/utils"
+	"poll-service/proto/websocket"
 )
 
 func (s *WebSocketNotifierService) SendPolls(polls []models.Poll) {

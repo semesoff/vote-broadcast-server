@@ -2,12 +2,12 @@ package handlers
 
 import (
 	"context"
-	pollProto "vote-broadcast-server/proto/poll"
-	"vote-broadcast-server/services/poll/pkg/models"
-	"vote-broadcast-server/services/poll/pkg/services"
-	"vote-broadcast-server/services/poll/pkg/services/notification_service"
-	"vote-broadcast-server/services/poll/pkg/services/poll"
-	"vote-broadcast-server/services/poll/pkg/utils"
+	"poll-service/pkg/models"
+	"poll-service/pkg/services"
+	"poll-service/pkg/services/notification_service"
+	"poll-service/pkg/services/poll"
+	"poll-service/pkg/utils"
+	pollProto "poll-service/proto/poll"
 )
 
 type HandlersManager struct {

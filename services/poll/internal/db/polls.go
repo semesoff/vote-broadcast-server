@@ -1,8 +1,8 @@
 package db
 
 import (
-	"vote-broadcast-server/services/poll/pkg/models"
-	"vote-broadcast-server/services/poll/pkg/utils"
+	"poll-service/pkg/models"
+	"poll-service/pkg/utils"
 )
 
 func (d *DatabaseManager) GetPolls() ([]models.Poll, error) {

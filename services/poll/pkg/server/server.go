@@ -1,12 +1,12 @@
 package server
 
 import (
-	"vote-broadcast-server/services/poll/pkg/config"
-	"vote-broadcast-server/services/poll/pkg/handlers"
-	"vote-broadcast-server/services/poll/pkg/services"
-	"vote-broadcast-server/services/poll/pkg/services/notification_service"
-	"vote-broadcast-server/services/poll/pkg/services/server"
-	"vote-broadcast-server/services/poll/pkg/services/websocket_notifier"
+	"poll-service/pkg/config"
+	"poll-service/pkg/handlers"
+	"poll-service/pkg/services"
+	"poll-service/pkg/services/notification_service"
+	"poll-service/pkg/services/server"
+	"poll-service/pkg/services/websocket_notifier"
 )
 
 type ServerManager struct {

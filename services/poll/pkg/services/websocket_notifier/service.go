@@ -8,9 +8,9 @@ import (
 	"log"
 	"os"
 	"os/signal"
+	"poll-service/pkg/models"
+	"poll-service/proto/websocket"
 	"sync"
-	"vote-broadcast-server/proto/websocket"
-	"vote-broadcast-server/services/poll/pkg/models"
 )
 
 type WebSocketNotifierService struct {
