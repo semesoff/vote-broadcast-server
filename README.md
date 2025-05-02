@@ -23,7 +23,7 @@
 - PostgreSQL
 - gRPC
 - WebSockets
-- Docket
+- Docker
 
 ## Начало работы
 
